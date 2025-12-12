@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+<link rel="icon" href="app.ico">
+  <title>TeleContact – La forma más eficaz de llamar a tu base de datos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="TeleContact automatiza tus llamadas y te permite trabajar hasta 3 veces más rápido.">
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Iconos Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --blue: #0B4FA9;
+      --blue-dark: #001F4D;
+      --red: #E6322E;
+      --beige: #FFF7D8;
+      --text-dark: #1B1B1B;
+      --text-muted: #555555;
+      --border-soft: #E2E6F0;
+      --bg-light: #F7F7FB;
+      --white: #FFFFFF;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-dark);
+      background-color: #ffffff;
+      line-height: 1.5;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    a { text-decoration: none; color: inherit; }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--white);
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      gap: 24px;
+    }
+
+    .logo-wrap { display: flex; align-items: center; gap: 10px; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 14px;
+    }
+
+    .nav-links a { color: var(--text-dark); opacity: 0.85; }
+    .nav-links a:hover { color: var(--blue); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background-color: var(--blue);
+      color: #ffffff;
+      border-color: var(--blue);
+    }
+
+    .btn-primary:hover {
+      background-color: #083a7f;
+      border-color: #083a7f;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--blue);
+      border-color: var(--blue);
+    }
+
+    .btn-outline:hover { background-color: rgba(11, 79, 169, 0.08); }
+
+    main { padding-bottom: 15px; }
+
+    /* HERO */
+    .hero { padding: 40px 0 60px; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+
+    .hero-title { font-size: 34px; line-height: 1.2; margin-bottom: 16px; }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      max-width: 420px;
+    }
+
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .hero-image {
+      background-color: var(--beige);
+      border-radius: 16px;
+      padding: 10px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .hero-placeholder {
+      width: 100%;
+      height: 260px;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      background-color: #000;
+    }
+
+    .hero-video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .hero-video-play {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 60px;
+      height: 60px;
+      border-radius: 999px;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: var(--red);
+      font-size: 26px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero-placeholder.playing .hero-video-play { display: none; }
+
+    /* SECCIONES GENERALES */
+    .section { padding: 60px 0; }
+    .section-beige { background-color: var(--beige); }
+
+    .section-title { font-size: 24px; text-align: center; margin-bottom: 10px; }
+
+    .section-subtitle {
+      font-size: 14px;
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    /* BENEFICIOS */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .benefit-card {
+      background-color: var(--white);
+      border-radius: 12px;
+      padding: 22px 18px 22px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      text-align: center;
+    }
+
+    .benefit-icon { font-size: 32px; margin-bottom: 10px; color: var(--blue); }
+    .benefit-icon.red { color: var(--red); }
+
+    .benefit-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+
+    .benefit-text { font-size: 13px; color: var(--text-muted); }
+
+    /* PRICING */
+    .section-pricing { background-color: #fafbfd; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 24px;
+    }
+
+    .pricing-card {
+      background-color: #ffffff;
+      border-radius: 18px;
+      border: 1px solid var(--blue);
+      padding: 22px 20px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+    }
+
+    .pricing-name { font-size: 16px; font-weight: 600; }
+    .pricing-price { font-size: 20px; font-weight: 700; }
+    .pricing-note { font-size: 12px; color: var(--text-muted); text-align: center; }
+
+    /* Opiniones */
+    .section-testimonials { background-color: var(--blue-dark); color: #ffffff; }
+
+    .section-testimonials .section-title,
+    .section-testimonials .section-subtitle { color: #ffffff; }
+
+    .testimonial-wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+      margin-top: 32px;
+      position: relative;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .testimonial-card {
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 22px 24px;
+      min-height: 170px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .testimonial-text { font-size: 14px; margin-bottom: 12px; }
+    .testimonial-bottom { margin-top: auto; }
+    .testimonial-rating { font-size: 12px; color: #FFD54F; margin-bottom: 4px; }
+    .testimonial-author { font-size: 13px; opacity: 0.9; }
+
+    .testimonial-arrows { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
+
+    .testimonial-arrow-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      background-color: rgba(0, 0, 0, 0.2);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .testimonial-page-indicator { margin-top: 10px; text-align: center; font-size: 12px; opacity: 0.7; }
+
+    /* FAQ */
+    .faq-list { max-width: 800px; margin: 30px auto 0; }
+    .faq-item { border-bottom: 1px solid #ececf2; }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .faq-question span { flex: 1; margin-right: 12px; }
+    .faq-toggle { font-size: 18px; color: var(--blue); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease;
+      font-size: 13px;
+      color: var(--text-muted);
+      padding: 0 4px 0;
+    }
+
+    .faq-item.open .faq-answer { padding-bottom: 10px; max-height: 200px; }
+
+    /* FOOTER */
+    footer { background-color: var(--beige); padding: 22px 0 24px; font-size: 13px; }
+
+    .footer-top {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .footer-top a { color: var(--text-dark); opacity: 0.85; }
+
+    .footer-copy { text-align: center; margin-bottom: 8px; font-size: 12px; color: var(--text-muted); }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px 18px;
+    }
+
+    .footer-contact { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+    .footer-logo { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--blue); }
+
+    .footer-phone-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background-color: #25D366;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-image { order: -1; }
+      .benefits-grid, .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .testimonial-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 640px) {
+      .navbar-inner { flex-wrap: wrap; justify-content: center; }
+      .nav-links { display: none; }
+      .hero { padding-top: 28px; }
+      .hero-title { font-size: 26px; }
+      .benefits-grid, .pricing-grid, .testimonial-grid { grid-template-columns: 1fr; }
+      .testimonial-card { padding: 18px 16px; }
+    }
+
+    /* =========================
+       TELECONTACT CHAT (Widget)
+       ========================= */
+    .tc-chat-fab{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      width:56px;
+      height:56px;
+      border-radius:999px;
+      background: var(--blue);
+      color:#fff;
+      border:0;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 14px 30px rgba(0,0,0,.22);
+      z-index:9999;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .tc-chat-fab:hover{ transform: translateY(-2px); background: var(--blue-dark); }
+    .tc-chat-fab i{ font-size:22px; }
+
+    .tc-chat-panel{
+      position:fixed;
+      right:18px;
+      bottom:86px;
+      width:min(380px, calc(100vw - 36px));
+      height:520px;
+      background:#fff;
+      border:1px solid var(--border-soft);
+      border-radius:18px;
+      box-shadow:0 18px 50px rgba(0,0,0,.22);
+      overflow:hidden;
+      z-index:9999;
+      display:none;
+    }
+    .tc-chat-panel.open{ display:flex; flex-direction:column; }
+
+    .tc-chat-header{
+      background: var(--blue);
+      color:#fff;
+      padding:12px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .tc-chat-header .tc-title{
+      font-weight:700;
+      font-size:14px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .tc-chat-header .tc-title i{ opacity:.95; }
+    .tc-chat-close{
+      background: rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.28);
+      color:#fff;
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      cursor:pointer;
+    }
+
+    .tc-chat-body{
+      flex:1;
+      padding:14px;
+      background: #f7f8fc;
+      overflow:auto;
+    }
+    .tc-msg{
+      max-width:88%;
+      padding:10px 12px;
+      border-radius:14px;
+      margin:8px 0;
+      font-size:13px;
+      line-height:1.35;
+      box-shadow:0 2px 8px rgba(0,0,0,.06);
+      word-wrap:break-word;
+      white-space:pre-wrap;
+    }
+    .tc-msg.assistant{
+      background:#fff;
+      border:1px solid rgba(0,0,0,.06);
+      border-top-left-radius:6px;
+    }
+    .tc-msg.user{
+      margin-left:auto;
+      background: rgba(11,79,169,.12);
+      border:1px solid rgba(11,79,169,.22);
+      border-top-right-radius:6px;
+    }
+
+    .tc-chat-footer{
+      padding:10px;
+      background:#fff;
+      border-top:1px solid rgba(0,0,0,.06);
+      display:flex;
+      gap:10px;
+    }
+    .tc-chat-input{
+      flex:1;
+      border:1px solid rgba(0,0,0,.14);
+      border-radius:999px;
+      padding:10px 12px;
+      font-family: inherit;
+      font-size:13px;
+      outline:none;
+    }
+    .tc-chat-send{
+      border-radius:999px;
+      border:1px solid var(--blue);
+      background: var(--blue);
+      color:#fff;
+      padding:10px 14px;
+      cursor:pointer;
+      font-weight:700;
+    }
+    .tc-chat-send:disabled{ opacity:.6; cursor:not-allowed; }
+
+    @media (max-width:640px){
+      .tc-chat-panel{
+        right:12px;
+        bottom:78px;
+        width: calc(100vw - 24px);
+        height: 70vh;
+      }
+      .tc-chat-fab{ right:12px; bottom:12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <div class="logo-wrap">
+        <a href="#inicio" id="logoLink">
+          <img src="logoempresa.png" alt="TeleContact" style="height:40px;">
+        </a>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#features">Características</a>
+        <a href="#pricing">Precios</a>
+        <a href="#testimonials">Opiniones</a>
+        <a href="#faq">Preguntas frecuentes</a>
+      </nav>
+
+      <a href="descargar.html" class="btn btn-primary">Descargar</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <p class="hero-kicker">Multiplica tu productividad</p>
+          <h1 class="hero-title">La forma más eficaz de llamar a tu base de datos.</h1>
+          <p class="hero-subtitle">
+            TeleContact automatiza tus llamadas y te permite trabajar hasta 3 veces más rápido con tus listados de clientes.
+          </p>
+          <div class="hero-actions">
+            <a href="#pricing" class="btn btn-primary">Lo quiero</a>
+            <a href="#contacto" class="btn btn-outline">Contáctanos</a>
+          </div>
+        </div>
+
+        <div class="hero-image">
+          <div class="hero-placeholder" id="heroVideoContainer">
+            <video
+              id="heroVideo"
+              class="hero-video"
+              src="VideoTeleContact.mp4"
+              preload="metadata"
+              controls
+              playsinline
+            ></video>
+            <button
+              class="hero-video-play"
+              id="heroVideoPlay"
+              aria-label="Reproducir vídeo de TeleContact"
+            >
+              ►
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section class="section section-beige" id="features">
+      <div class="container">
+        <h2 class="section-title">Todo lo que necesitas para llamar más y mejor</h2>
+        <p class="section-subtitle">
+          Pensado para teleoperadores, comerciales y equipos que trabajan con bases de datos de contactos.
+        </p>
+
+        <div class="benefits-grid">
+          <article class="benefit-card">
+            <div class="benefit-icon"><i class="fa-solid fa-bolt"></i></div>
+            <h3 class="benefit-title">Aumenta tu número de llamadas</h3>
+            <p class="benefit-text">Más llamadas = más resultados en el mismo tiempo de trabajo.</p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon red"><i class="fa-solid fa-arrows-rotate"></i></div>
+            <h3 class="benefit-title">Selección aleatoria inteligente</h3>
+            <p class="benefit-text">Llama a contactos en orden aleatorio y evita repeticiones innecesarias.</p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon"><i class="fa-solid fa-phone"></i></div>
+            <h3 class="benefit-title">Compatible con varios Dialer</h3>
+            <p class="benefit-text">Se adapta fácilmente a otros dialer. Por defecto viene con Eyebeam y MicroSIP.</p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon red"><i class="fa-solid fa-file-lines"></i></div>
+            <h3 class="benefit-title">Copia datos en un solo clic</h3>
+            <p class="benefit-text">Extrae la información del contacto al instante para volcarla en tu CRM o Excel.</p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon"><i class="fa-solid fa-headset"></i></div>
+            <h3 class="benefit-title">Para teleoperadores y comerciales</h3>
+            <p class="benefit-text">Diseñado para el día a día real: simple, rápido y centrado en la productividad.</p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon red"><i class="fa-solid fa-ban"></i></div>
+            <h3 class="benefit-title">Excluye contactos fácilmente</h3>
+            <p class="benefit-text">Marca los contactos que no quieres volver a llamar y mantén tu listado siempre limpio.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section section-pricing" id="pricing">
+      <div class="container">
+        <h2 class="section-title">Elige el plan que más se adapte a tus necesidades</h2>
+        <p class="section-subtitle">Planes simples, pensados para equipos pequeños y autónomos.</p>
+
+        <div class="pricing-grid">
+          <article class="pricing-card">
+            <h3 class="pricing-name">Plan Mensual</h3>
+            <p class="pricing-price">9,90€/mes</p>
+            <p class="pricing-note">&nbsp;</p>
+            <a href="checkout.html?plan=mensual" class="btn btn-primary">Lo quiero</a>
+          </article>
+
+          <article class="pricing-card">
+            <h3 class="pricing-name">Plan Semestral</h3>
+            <p class="pricing-price">49,5€/semestre</p>
+            <p class="pricing-note">*Ahorro de 1 mes</p>
+            <a href="checkout.html?plan=semestral" class="btn btn-primary">Lo quiero</a>
+          </article>
+
+          <article class="pricing-card">
+            <h3 class="pricing-name">Plan Anual</h3>
+            <p class="pricing-price">99€/año</p>
+            <p class="pricing-note">*Ahorro de 2 meses</p>
+            <a href="checkout.html?plan=anual" class="btn btn-primary">Lo quiero</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Opiniones -->
+    <section class="section section-testimonials" id="testimonials">
+      <div class="container">
+        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+        <p class="section-subtitle">Experiencias reales de teleoperadores y comerciales que ya usan TeleContact.</p>
+
+        <div class="testimonial-wrapper">
+          <div class="testimonial-grid" id="testimonial-grid"></div>
+
+          <div class="testimonial-arrows">
+            <button class="testimonial-arrow-btn" id="prevTestimonial" aria-label="Anterior">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="testimonial-arrow-btn" id="nextTestimonial" aria-label="Siguiente">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+
+          <div class="testimonial-page-indicator" id="testimonial-page-indicator"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <h2 class="section-title">Preguntas frecuentes</h2>
+        <p class="section-subtitle">Respuestas a las dudas más comunes sobre TeleContact.</p>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>¿Funciona con cualquier dialer?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                TeleContact está pensado para integrarse fácilmente con los principales softphones.
+                Actualmente lo usamos con EyeBeam y MicroSIP, pero se puede adaptar fácilmente a otros dialers.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>¿Necesita instalación?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                No. Basta con descomprimir la carpeta descargada en cualquier ubicación de tu PC y ejecutar el archivo TeleContact.exe.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>¿Puedo usar mi Excel de contactos?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Sí. Solo tienes que preparar tu listado en Excel con las columnas básicas (nombre, teléfono, etc.) y TeleContact lo importa para que puedas empezar a llamar.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>¿Qué requisitos tiene el PC?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>Funciona en la mayoría de PCs con Windows. No requiere máquinas potentes.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>¿Hay prueba gratuita?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Ofrecemos un periodo de prueba para que puedas comprobar si encaja con tu forma de trabajar antes de decidirte por un plan.
+                Escríbenos y te enviamos los detalles.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>¿Funciona en varios ordenadores?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Las licencias son individuales y se activan por equipo. Si tu equipo crece, puedes añadir más licencias en cualquier momento.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="contacto">
+    <div class="container">
+      <div class="footer-top">
+        <a href="aviso-legal.html">Aviso legal</a>
+        <span>|</span>
+        <a href="politica-privacidad.html">Política de privacidad</a>
+        <span>|</span>
+        <a href="politica-cookies.html">Política de cookies</a>
+      </div>
+
+      <div class="footer-copy">
+        © 2025 TeleContact. Todos los derechos reservados.
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-contact">
+          <span class="footer-phone-icon"><i class="fa-brands fa-whatsapp"></i></span>
+          <span>+34 645 111 583</span>
+          <span>|</span>
+          <span><a href="mailto:telecontact@gmail.com">telecontact@gmail.com</a></span>
+        </div>
+
+        <div class="footer-logo">
+          <span>TeleContact</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TELECONTACT CHAT (Widget) -->
+  <button class="tc-chat-fab" id="tcChatFab" aria-label="Abrir chat">
+    <i class="fa-solid fa-headset"></i>
+  </button>
+
+  <section class="tc-chat-panel" id="tcChatPanel" aria-label="Chat TeleContact">
+    <header class="tc-chat-header">
+      <div class="tc-title">
+        <i class="fa-solid fa-headset"></i>
+        <span>Asistente de TeleContact</span>
+      </div>
+      <button class="tc-chat-close" id="tcChatClose" aria-label="Cerrar">✕</button>
+    </header>
+
+    <div class="tc-chat-body" id="tcChatBody"></div>
+
+    <div class="tc-chat-footer">
+      <input class="tc-chat-input" id="tcChatInput" placeholder="Escribe aquí..." autocomplete="off">
+      <button class="tc-chat-send" id="tcChatSend">Enviar</button>
+    </div>
+  </section>
+
+  <script>
+    // ----- Opiniones: 9 en total, de 3 en 3 -----
+    const testimonials = [
+      { text: "Desde que uso TeleContact hago muchas más llamadas sin perder tiempo entre un contacto y otro. Es rápido y muy sencillo. Ideal para trabajar con listados largos.", author: "Carlos M. – Teleoperador" },
+      { text: "En pocos minutos ya estaba funcionando y pude integrar mis contactos sin complicaciones. Me ha ayudado a aumentar mucho mi flujo de llamadas.", author: "Lucía R. – Comercial" },
+      { text: "Me facilita mucho el trabajo y me ahorra mucho tiempo. He podido duplicar mis ventas en poco tiempo.", author: "Juan P. – Teleoperador" },
+      { text: "TeleContact me permite concentrarme en la llamada y no en el Excel. Es una herramienta muy práctica para el día a día.", author: "Marta G. – Teleoperadora" },
+      { text: "Antes perdía mucho tiempo buscando contactos. Ahora todo va encadenado y el ritmo de trabajo es mucho más alto.", author: "Alberto S. – Comercial" },
+      { text: "Lo mejor para mí es poder excluir contactos fácilmente y no volver a marcarlos por error. Me da mucha tranquilidad.", author: "Patricia L. – Teleoperadora" },
+      { text: "La curva de aprendizaje es prácticamente cero. En una tarde lo estaba utilizando como si llevara semanas con él.", author: "Raúl V. – Responsable de ventas" },
+      { text: "Es ideal cuando tienes listados grandes y poco tiempo. Automatiza lo que antes hacía manualmente.", author: "Elena D. – Telemarketing" },
+      { text: "Muy recomendable si trabajas haciendo llamadas de forma intensiva. Es sencillo pero está muy bien pensado.", author: "Jorge F. – Teleoperador" }
+    ];
+
+    const itemsPerPage = 3;
+    let currentPage = 0;
+
+    const testimonialGrid = document.getElementById("testimonial-grid");
+    const pageIndicator = document.getElementById("testimonial-page-indicator");
+
+    function renderTestimonialsPage() {
+      testimonialGrid.innerHTML = "";
+      const start = currentPage * itemsPerPage;
+      const slice = testimonials.slice(start, start + itemsPerPage);
+
+      slice.forEach(t => {
+        const card = document.createElement("article");
+        card.className = "testimonial-card";
+        card.innerHTML = `
+          <p class="testimonial-text">“${t.text}”</p>
+          <div class="testimonial-bottom">
+            <div class="testimonial-rating" aria-label="Valoración 5 estrellas">★★★★★</div>
+            <p class="testimonial-author">${t.author}</p>
+          </div>
+        `;
+        testimonialGrid.appendChild(card);
+      });
+
+      pageIndicator.textContent = "";
+    }
+
+    document.getElementById("prevTestimonial").addEventListener("click", () => {
+      const totalPages = Math.ceil(testimonials.length / itemsPerPage);
+      currentPage = (currentPage - 1 + totalPages) % totalPages;
+      renderTestimonialsPage();
+    });
+
+    document.getElementById("nextTestimonial").addEventListener("click", () => {
+      const totalPages = Math.ceil(testimonials.length / itemsPerPage);
+      currentPage = (currentPage + 1) % totalPages;
+      renderTestimonialsPage();
+    });
+
+    // ----- FAQ -----
+    function initFAQ() {
+      const faqItems = document.querySelectorAll(".faq-item");
+      faqItems.forEach(item => {
+        const q = item.querySelector(".faq-question");
+        q.addEventListener("click", () => {
+          item.classList.toggle("open");
+          const toggle = item.querySelector(".faq-toggle");
+          toggle.textContent = item.classList.contains("open") ? "–" : "+";
+        });
+      });
+    }
+
+    // ----- Vídeo del héroe -----
+    function initHeroVideo() {
+      const video = document.getElementById("heroVideo");
+      const container = document.getElementById("heroVideoContainer");
+      const playBtn = document.getElementById("heroVideoPlay");
+      if (!video || !container || !playBtn) return;
+
+      video.addEventListener("play", () => container.classList.add("playing"));
+
+      playBtn.addEventListener("click", () => {
+        container.classList.add("playing");
+        video.play().catch(() => {});
+      });
+    }
+
+    function initLogoScroll() {
+      const logo = document.getElementById("logoLink");
+      if (!logo) return;
+
+      logo.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    // =========================
+    // TELECONTACT CHAT (IA)
+    // =========================
+    const TC_CHAT_API_URL = "https://cool-haze-ac7c.javivilxes.workers.dev/api/chat";
+
+    function initTeleContactChat(){
+      const tcFab   = document.getElementById("tcChatFab");
+      const tcPanel = document.getElementById("tcChatPanel");
+      const tcClose = document.getElementById("tcChatClose");
+      const tcBody  = document.getElementById("tcChatBody");
+      const tcInput = document.getElementById("tcChatInput");
+      const tcSend  = document.getElementById("tcChatSend");
+
+      if (!tcFab || !tcPanel || !tcClose || !tcBody || !tcInput || !tcSend) return;
+
+      let openedOnce = false;
+      let history = [];
+
+      function addMsg(role, text){
+        const div = document.createElement("div");
+        div.className = `tc-msg ${role}`;
+        div.textContent = text;
+        tcBody.appendChild(div);
+        tcBody.scrollTop = tcBody.scrollHeight;
+      }
+
+      function openChat(){
+        tcPanel.classList.add("open");
+        if (!openedOnce){
+          openedOnce = true;
+          addMsg("assistant", "Buenas! soy tu asistente de TeleContact 😊 en qué te ayudo?");
+        }
+        setTimeout(() => tcInput.focus(), 50);
+      }
+
+      function closeChat(){ tcPanel.classList.remove("open"); }
+
+      tcFab.addEventListener("click", () => {
+        tcPanel.classList.contains("open") ? closeChat() : openChat();
+      });
+
+      tcClose.addEventListener("click", closeChat);
+
+      tcInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") tcSend.click();
+      });
+
+      async function sendMessage(){
+        const userText = (tcInput.value || "").trim();
+        if (!userText) return;
+
+        tcInput.value = "";
+        addMsg("user", userText);
+
+        // guardamos en historial (para tu Worker)
+        history.push({ role: "user", content: userText });
+
+        tcSend.disabled = true;
+
+        try{
+          const res = await fetch(TC_CHAT_API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              message: userText,
+              history
+            })
+          });
+
+          if (!res.ok) {
+            const t = await res.text().catch(() => "");
+            throw new Error(`HTTP ${res.status} ${t}`);
+          }
+
+          const data = await res.json();
+          const reply = (data && typeof data.reply === "string") ? data.reply : "";
+
+          if (!reply) throw new Error("No reply");
+
+          addMsg("assistant", reply);
+          history.push({ role: "assistant", content: reply });
+
+        }catch(err){
+          addMsg("assistant", "Se me ha cortado la conexión. Me lo repites?");
+        }finally{
+          tcSend.disabled = false;
+        }
+      }
+
+      tcSend.addEventListener("click", sendMessage);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderTestimonialsPage();
+      initFAQ();
+      initHeroVideo();
+      initLogoScroll();
+      initTeleContactChat();
+    });
+  </script>
+</body>
+</html>

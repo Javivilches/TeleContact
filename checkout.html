@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pago – TeleContact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root { --blue:#0B4FA9; --text:#1B1B1B; --muted:#555; --beige:#FFF7D8; }
+    body{ font-family: Arial, sans-serif; margin:0; color:var(--text); background:#fff; }
+    .navbar{ position:sticky; top:0; z-index:100; background:#fff; border-bottom:1px solid #f0f0f0; }
+    .container{ max-width:1100px; margin:0 auto; padding:0 16px; }
+    .navbar-inner{ display:flex; align-items:center; justify-content:space-between; padding:10px 0; gap:24px; }
+    .btn{ display:inline-flex; align-items:center; justify-content:center; border-radius:999px; padding:10px 22px; font-size:14px; font-weight:700; border:1px solid transparent; cursor:pointer; text-decoration:none; }
+    .btn-primary{ background:var(--blue); color:#fff; }
+    .btn-primary:hover{ background:#083a7f; }
+    .btn-outline{ background:transparent; border-color:var(--blue); color:var(--blue); }
+    .card{ background:#fff; border:1px solid #eee; border-radius:16px; padding:22px; box-shadow:0 10px 30px rgba(0,0,0,.06); }
+    main{ padding:40px 0 70px; }
+    .grid{ display:grid; grid-template-columns:1fr; gap:16px; max-width:760px; margin:0 auto; }
+    .kicker{ font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); font-weight:700; margin-bottom:8px;}
+    h1{ margin:0 0 8px; font-size:26px; }
+    .muted{ color:var(--muted); font-size:14px; }
+    .row{ display:flex; gap:12px; flex-wrap:wrap; margin-top:14px; }
+    .price{ font-size:18px; font-weight:800; margin-top:6px; }
+    .note{ background:var(--beige); padding:12px 14px; border-radius:12px; font-size:13px; }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <div class="logo-wrap">
+        <a href="index.html"><img src="logoempresa.png" alt="TeleContact" style="height:40px;"></a>
+      </div>
+      <a href="index.html#pricing" class="btn btn-outline">Volver a planes</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="grid">
+        <div class="card">
+          <div class="kicker">Pago</div>
+          <h1 id="tituloPlan">Tu plan</h1>
+          <div class="price" id="precioPlan"></div>
+          <p class="muted" id="descPlan"></p>
+
+          <div class="row">
+            <button class="btn btn-primary" id="btnPaypal">Pagar con PayPal</button>
+            <button class="btn btn-outline" id="btnTarjeta">Pagar con tarjeta</button>
+          </div>
+
+          <div class="note" style="margin-top:16px;">
+            Tras el pago, te enviaremos la licencia por email. La licencia se vincula al primer PC donde se active.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="kicker">Transparencia</div>
+          <p class="muted" style="margin:0;">
+            (Modo demostración) Ahora mismo estos botones no cobran todavía.
+            En la siguiente fase conectamos PayPal y tarjeta para que el pago sea real.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const plan = (params.get("plan") || "mensual").toLowerCase();
+
+    const data = {
+      mensual:   { titulo:"Plan Mensual",   precio:"9,90€ / mes",      desc:"Pago único. Renuevas cuando quieras." },
+      semestral: { titulo:"Plan Semestral", precio:"49,5€ / semestre", desc:"Pago único. Ahorro de 1 mes." },
+      anual:     { titulo:"Plan Anual",     precio:"99€ / año",        desc:"Pago único. Ahorro de 2 meses." }
+    };
+
+    const d = data[plan] || data.mensual;
+    document.getElementById("tituloPlan").textContent = d.titulo;
+    document.getElementById("precioPlan").textContent = d.precio;
+    document.getElementById("descPlan").textContent = d.desc;
+
+    document.getElementById("btnPaypal").addEventListener("click", () => {
+      alert("Pago con PayPal (pendiente de integrar).");
+    });
+
+    document.getElementById("btnTarjeta").addEventListener("click", () => {
+      alert("Pago con tarjeta (pendiente de integrar).");
+    });
+  </script>
+
+</body>
+</html>

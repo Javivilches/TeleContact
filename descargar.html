@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Descargar TeleContact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --blue:#0B4FA9;
+      --text-dark:#1B1B1B;
+      --text-muted:#555555;
+      --white:#FFFFFF;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;}
+
+    body{
+      font-family:'Montserrat',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+      color:var(--text-dark);
+      background:#ffffff;
+      line-height:1.5;
+    }
+
+    a{text-decoration:none;color:inherit;}
+
+    .container{max-width:900px;margin:0 auto;padding:0 16px;}
+
+    .navbar{
+      position:sticky;top:0;z-index:100;
+      background:var(--white);
+      border-bottom:1px solid #f0f0f0;
+    }
+    .navbar-inner{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:10px 0;gap:24px;
+    }
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      border-radius:999px;
+      padding:12px 22px;
+      font-size:14px;font-weight:600;
+      cursor:pointer;
+      border:1px solid transparent;
+      transition:all .18s ease;
+      white-space:nowrap;
+    }
+    .btn-primary{background:var(--blue);color:#fff;border-color:var(--blue);}
+    .btn-primary:hover{background:#083a7f;border-color:#083a7f;transform:translateY(-1px);}
+    .btn-outline{background:transparent;border-color:var(--blue);color:var(--blue);}
+    .btn-outline:hover{background:rgba(11,79,169,.08);}
+
+    main{padding:40px 0 70px;}
+
+    /* ✅ Más estrecho y centrado */
+    .card{
+      background:#ffffff;
+      border-radius:16px;
+      padding:24px;
+      box-shadow:0 16px 40px rgba(0,0,0,.08);
+      border:1px solid rgba(0,0,0,.08);
+      max-width:740px;
+      margin:0 auto;
+    }
+
+    h1{font-size:28px;margin-bottom:10px;}
+
+    p{font-size:14px;color:var(--text-muted);margin-bottom:14px;}
+
+    .steps{
+      background:#ffffff;
+      border-radius:14px;
+      padding:16px;
+      border:1px solid rgba(0,0,0,.08);
+      margin:16px 0;
+    }
+    .steps li{margin:8px 0;font-size:14px;color:var(--text-dark);}
+
+    .actions{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .trial-block{
+      display:none;
+      margin-top:14px;
+      gap:12px;
+      flex-direction:column;
+    }
+    .trial-block.show{display:flex;}
+
+    .trial-choice{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    @media (max-width:560px){ .trial-choice{grid-template-columns:1fr;} }
+
+    .form{
+      display:none;
+      background:#ffffff;
+      padding:14px;
+      border-radius:12px;
+      border:1px solid rgba(0,0,0,.08);
+    }
+    .form.show{display:block;}
+
+    .form input{
+      width:100%;
+      padding:9px 10px;
+      margin-bottom:10px;
+      font-size:14px;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,.15);
+      background:#ffffff;
+      outline:none;
+    }
+
+    .form input:focus{
+      border-color:rgba(11,79,169,.55);
+      box-shadow:0 0 0 3px rgba(11,79,169,.10);
+    }
+
+    .note{font-size:13px;color:var(--text-muted);margin-top:12px;}
+
+    .success{
+      display:none;
+      margin-top:10px;
+      font-size:13px;
+      color:var(--text-dark);
+    }
+    .error{
+      display:none;
+      margin-top:10px;
+      font-size:13px;
+      color:#8a1f1f;
+    }
+
+    .btn[disabled]{opacity:.65;cursor:not-allowed;transform:none!important;}
+
+    /* ✅ Botones con ancho uniforme, pero NO a pantalla completa */
+    .actions .btn,
+    .trial-choice .btn,
+    .form .btn{
+      align-self:center;
+      min-width:260px;   /* ajusta a 240px si los quieres más estrechos */
+      max-width:320px;
+      width:auto;
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html">
+      <img src="logoempresa.png" alt="TeleContact" style="height:40px;">
+    </a>
+    <a href="index.html#pricing" class="btn btn-outline">Ver planes</a>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <div class="card">
+      <h1>Descargar TeleContact</h1>
+      <p>
+        TeleContact se descarga libremente, pero <strong>requiere una licencia activa</strong> para su uso.
+        También puedes solicitar una <strong>prueba gratuita de 7 días</strong>.
+      </p>
+
+      <div class="steps">
+        <ol>
+          <li>Descarga el archivo <strong>TeleContact.rar</strong>.</li>
+          <li>Descomprímelo en cualquier carpeta.</li>
+          <li>Ejecuta <strong>TeleContact.exe</strong>.</li>
+          <li>Activa tu licencia o solicita una de prueba.</li>
+        </ol>
+      </div>
+
+      <div class="actions">
+        <a href="TeleContact.rar" class="btn btn-primary" download>Descargar TeleContact</a>
+        <a href="index.html#pricing" class="btn btn-outline">Comprar licencia</a>
+        <button class="btn btn-outline" id="btnTrial" type="button">Solicitar prueba 7 días</button>
+      </div>
+
+      <div class="trial-block" id="trialBlock">
+
+        <div class="trial-choice">
+          <button class="btn btn-outline" id="btnTrialEmail" type="button">Solicitar por email</button>
+
+          <a
+            class="btn btn-outline"
+            href="https://wa.me/34645111583?text=Hola%2C%20quiero%20solicitar%20la%20prueba%20gratuita%20de%207%20d%C3%ADas%20de%20TeleContact."
+            target="_blank"
+            rel="noopener"
+          >
+            Solicitar por WhatsApp
+          </a>
+        </div>
+
+        <div class="form" id="trialEmailForm">
+          <!-- Envío a Google Forms mediante POST oculto -->
+          <form id="trialForm" target="hidden_iframe">
+            <input type="text" id="fNombre" placeholder="Nombre (obligatorio)" required>
+            <input type="email" id="fEmail" placeholder="Email (obligatorio)" required>
+            <input type="text" id="fTelefono" placeholder="Teléfono (opcional)">
+
+            <button type="submit" class="btn btn-outline" id="btnSendTrial">Enviar solicitud</button>
+
+            <p class="success" id="trialSuccess">
+              Solicitud enviada. Recibirás tu licencia por email en las próximas horas.
+            </p>
+            <p class="error" id="trialError">
+              Ahora mismo no se pudo enviar. Prueba por WhatsApp o inténtalo más tarde.
+            </p>
+          </form>
+
+          <iframe name="hidden_iframe" style="display:none;"></iframe>
+        </div>
+
+      </div>
+
+      <p class="note">
+        
+      </p>
+    </div>
+  </div>
+</main>
+
+<script>
+  // ✅ Cuando crees tu Google Form, pega aquí su "formResponse"
+  const GOOGLE_FORM_ACTION_URL = "PEGA_AQUI_TU_URL_formResponse";
+
+  // ✅ Estos 3 IDs dependen de tu Google Form
+  const GF_ENTRY_NOMBRE  = "entry.1111111111";
+  const GF_ENTRY_EMAIL   = "entry.2222222222";
+  const GF_ENTRY_TELEF   = "entry.3333333333";
+
+  const btnTrial = document.getElementById("btnTrial");
+  const trialBlock = document.getElementById("trialBlock");
+
+  const btnTrialEmail = document.getElementById("btnTrialEmail");
+  const trialEmailForm = document.getElementById("trialEmailForm");
+
+  const trialForm = document.getElementById("trialForm");
+  const btnSendTrial = document.getElementById("btnSendTrial");
+  const trialSuccess = document.getElementById("trialSuccess");
+  const trialError = document.getElementById("trialError");
+
+  btnTrial.addEventListener("click", () => {
+    trialBlock.classList.toggle("show");
+    if (!trialBlock.classList.contains("show")) {
+      trialEmailForm.classList.remove("show");
+      trialSuccess.style.display = "none";
+      trialError.style.display = "none";
+      btnSendTrial.disabled = false;
+    }
+  });
+
+  btnTrialEmail.addEventListener("click", () => {
+    trialEmailForm.classList.toggle("show");
+    trialSuccess.style.display = "none";
+    trialError.style.display = "none";
+    btnSendTrial.disabled = false;
+  });
+
+  function clearGFHiddenInputs() {
+    const olds = trialForm.querySelectorAll("input[name^='entry.']");
+    olds.forEach(i => i.remove());
+  }
+
+  function addGFHidden(name, value) {
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = name;
+    input.value = value;
+    trialForm.appendChild(input);
+  }
+
+  trialForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    trialSuccess.style.display = "none";
+    trialError.style.display = "none";
+    btnSendTrial.disabled = true;
+
+    if (!GOOGLE_FORM_ACTION_URL.startsWith("http")) {
+      trialError.style.display = "block";
+      btnSendTrial.disabled = false;
+      return;
+    }
+
+    const nombre = document.getElementById("fNombre").value.trim();
+    const email  = document.getElementById("fEmail").value.trim();
+    const tel    = document.getElementById("fTelefono").value.trim();
+
+    clearGFHiddenInputs();
+    addGFHidden(GF_ENTRY_NOMBRE, nombre);
+    addGFHidden(GF_ENTRY_EMAIL, email);
+    addGFHidden(GF_ENTRY_TELEF, tel);
+
+    trialForm.action = GOOGLE_FORM_ACTION_URL;
+    trialForm.method = "POST";
+
+    trialForm.submit();
+
+    trialSuccess.style.display = "block";
+  });
+</script>
+
+</body>
+</html>
