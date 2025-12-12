@@ -541,7 +541,7 @@
           </p>
           <div class="hero-actions">
             <a href="#pricing" class="btn btn-primary">Lo quiero</a>
-            <a href="#contacto" class="btn btn-outline">Contáctanos</a>
+           <a href="javascript:void(0)" id="btnContactanos" class="btn btn-outline">Contáctanos</a>
           </div>
         </div>
 
@@ -994,6 +994,18 @@
       initHeroVideo();
       initLogoScroll();
       initTeleContactChat();
+
+  // --- Contáctanos abre el chat ---
+  const btnContactanosEl = document.getElementById("btnContactanos");
+  const tcFabEl = document.getElementById("tcChatFab");
+
+  if (btnContactanosEl && tcFabEl) {
+    btnContactanosEl.addEventListener("click", (e) => {
+      e.preventDefault();
+      tcFabEl.click();
+    });
+  }
+
     });
   </script>
 </body>
